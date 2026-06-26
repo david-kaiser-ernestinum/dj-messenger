@@ -4,13 +4,16 @@ from django.contrib.auth.models import User
 
 class Chat(models.Model):
     name = models.CharField(max_length=30)
+    #ersetzt die Zwischentabelle 
+    members = models.ManyToManyField(User)
 
-class is_member(models.Model):
-    chat_id = models.ForeignKey(Chat, on_delete=models.CASCADE)
-    member_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self): 
+        return self.name
+
 
 class Message(models.Model):
-    chat_id = models.ForeignKey(Chat, on_delete=models.CASCADE)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.CharField(max_length=1000)
     date = models.DateField()
+

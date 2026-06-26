@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<h1>Willkommen {{request.user.username}} <h1>
+<br><br>
+<a href = "/logout/">
+	logout
+</a>
+
+<h2>Chats:</h2>
+
+<form action="/chat/create/" method ="post">
+	{% csrf_token %}
+
+	<input
+			type="text"
+			name="name"
+			placeholder="Name des Chats"
+		>
+	<br><br>
+
+	<button type="submit">
+		Erstellen
+	</button>
+
+<ul>
+	{% for chat in chats %}
+	<li>
+		{{chat.name}}
+	</li>
+	{% empty %}
+	<li> Du hast noch keine Chats </li>
+	{% endfor %}
+
+</body>
+</html>
+
