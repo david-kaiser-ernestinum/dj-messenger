@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ chat.name }} · dj_chat{% endblock %}
+
+{% block topbar_right %}
+<a href="/home/" class="link-muted">← home</a>
+{% endblock %}
+
+{% block content %}
+<section class="chat-header">
+	<h1>{{ chat.name }}</h1>
+</section>
+
+{% if error %}
+<p class="error-banner">{{ error }}</p>
+{% endif %}
+
+<section class="card card-compact add-user">
+	<form action="{% url 'add_user' chat.id %}" method="post" class="form form-inline">
+		{% csrf_token %}
+		<input type="text" name="username" placeholder="Nutzername hinzufügen">
+		<button type="submit" class="btn btn-secondary">Hinzufügen</button>
+	</form>
+</section>
+
+<section class="messages">
+	{% for message in messages %}
+		{% if message.sender|stringformat:"s" == request.user.username %}
+		<div class="bubble-row me">
+			<div class="bubble bubble-me">
+				<p class="bubble-text">{{ message.content }}</p>
+			</div>
+		</div>
+		{% else %}
+		<div class="bubble-row">
+			<span class="bubble-sender">@{{ message.sender }}</span>
+			<div class="bubble bubble-other">
+				<p class="bubble-text">{{ message.content }}</p>
+			</div>
+		</div>
+		{% endif %}
+	{% empty %}
+	<div class="empty-state">
+		<p>Noch keine Nachrichten im Chat.</p>
+		<p class="empty-sub">Schreib die erste Nachricht.</p>
+	</div>
+	{% endfor %}
+</section>
+
+<form action="{% url 'send_message' chat.id %}" method="post" class="composer">
+	{% csrf_token %}
+	<input type="text" name="content" placeholder="Nachricht schreiben…" autocomplete="off" required>
+	<button type="submit" class="btn btn-primary">Senden</button>
+</form>
+{% endblock %}
+
