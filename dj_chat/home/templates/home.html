@@ -1,41 +1,38 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "base.html" %}
 
-	<h1>Willkommen {{request.user.username}} <h1>
-<br><br>
-<a href = "/logout/">
-	logout
-</a>
+{% block title %}Home · dj_chat{% endblock %}
 
-<h2>Chats:</h2>
+{% block topbar_right %}
+<a href="/logout/" class="link-muted">Logout</a>
+{% endblock %}
 
-<ul>
+{% block content %}
+<section class="page-header">
+	<h1>Willkommen, {{ request.user.username }}</h1>
+	<p class="subtitle">Deine Unterhaltungen im Überblick.</p>
+</section>
+
+<section class="chat-list">
 	{% for chat in chats %}
-	<li>
-		<a href={% url "view_chat" chat.id %}>
-		{{chat.name}}
-		</a>
-	</li>
+	<a href="{% url 'view_chat' chat.id %}" class="chat-row">
+		<span class="chat-avatar">{{ chat.name|slice:":1"|upper }}</span>
+		<span class="chat-name">{{ chat.name }}</span>
+		<span class="chat-arrow">→</span>
+	</a>
 	{% empty %}
-	<li> Du hast noch keine Chats </li>
+	<div class="empty-state">
+		<p>Du hast noch keine Chats.</p>
+		<p class="empty-sub">Erstelle unten deinen ersten Chat.</p>
+	</div>
 	{% endfor %}
+</section>
 
-	<br><br>
-<form action="/chat/create/" method ="post">
-	{% csrf_token %}
-
-	<input
-			type="text"
-			name="name"
-			placeholder="Name des Chats"
-		>
-	<br><br>
-
-	<button type="submit">
-		Erstellen
-	</button>
-
-</body>
-</html>
-
+<section class="card card-compact">
+	<h2>Neuen Chat erstellen</h2>
+	<form action="/chat/create/" method="post" class="form form-inline">
+		{% csrf_token %}
+		<input type="text" name="name" placeholder="Name des Chats" required>
+		<button type="submit" class="btn btn-primary">Erstellen</button>
+	</form>
+</section>
+{% endblock %}

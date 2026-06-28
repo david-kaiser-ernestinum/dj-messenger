@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "base.html" %}
 
-<h1>Willkommen</h1>
-<a href = "/login/">
-	Login
-</a>
-<br><br>
-<a href = "/register/">
-	Registrieren
-</a>
+{% block title %}dj_chat{% endblock %}
 
-</body>
-</html>
-
+{% block content %}
+<section class="hero">
+	<h1>Willkommen zu dj<span class="cursor">_</span>chat!</h1>
+	<p class="subtitle">simpel - sicher - schnell </p>
+	<div class="hero-actions">
+		<a href="/login/" class="btn btn-primary">Login</a>
+		<a href="/register/" class="btn btn-secondary">Registrieren</a>
+	</div>
+</section>
+{% endblock %}
