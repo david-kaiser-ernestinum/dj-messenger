@@ -1,9 +1,9 @@
-from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth.decorators import login_required
-from .models import Chat, Message
-from datetime import datetime
-from django.http import HttpResponseForbidden
-from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, redirect, render #django methoden für redirect usw.
+from django.contrib.auth.decorators import login_required #für login_required
+from .models import Chat, Message #datenbank import
+from datetime import datetime #zeit biblothek import
+from django.http import HttpResponseForbidden #403 import
+from django.contrib.auth.models import User #user datenbank import
 
 # Create your views here.
 
@@ -27,7 +27,7 @@ def view_chat(request, chat_id): #Chat angegucken
         "chat" : chat,
         "messages" : messages
             }
-    return render(request,"chat.html", context) 
+    return render(request,"chat.html", context) #aktuallisiere die seite mit allen nachrichten
 
 
 @login_required
@@ -49,7 +49,7 @@ def send_message(request, chat_id): #Schicke Nachricht
                 date = datetime.now()
                 )
 
-    return redirect("view_chat", chat_id)
+    return redirect("view_chat", chat_id)#aktuallisiere seite mit der neuen nachricht
 
 @login_required
 def add_user(request, chat_id): #Nutzer hinzufügen
