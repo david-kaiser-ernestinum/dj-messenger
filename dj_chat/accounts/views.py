@@ -12,7 +12,7 @@ def register_view(request): #registrieren
 
     if request.method == "POST": #Als POST request
 
-        username = request.POST["username"] #kriege Nutzernamen durch index
+        username = request.POST["username"] #kriege Nutzernamen durch login.html
         password = request.POST["password"] #kriege Passwort
 
         if User.objects.filter(
@@ -41,8 +41,8 @@ def login_view(request): #einloggen
     error = "" #fehler platzhalter
 
     if request.method == "POST": #als POST request
-        username = request.POST["username"] #kriege nuternamen durch die index 
-        password = request.POST["password"] #kriege passwort durch die index
+        username = request.POST["username"] #kriege nuternamen durch die login.html
+        password = request.POST["password"] #kriege passwort durch die login.html
 
 
         user = authenticate(request, #django methode um nutzer mit parametern username und password zu authentizieren
@@ -72,7 +72,7 @@ def login_view(request): #einloggen
 def logout_view(request): #ausloggen
     logout(request) #django methode zum ausloggen
 
-    return redirect("/index/") #weiterleitung index
+    return redirect("/index/") #weiterleitung startseite
 
 
 
