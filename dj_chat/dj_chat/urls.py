@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include("accounts.urls")),
-    path('', include("home.urls")),
-    path('chat/', include("chat.urls"))
+    path('admin/', admin.site.urls),  #pfad für admin panel
+    path('', include("accounts.urls")), #alle pfade aus accounts app
+    path('', include("home.urls")), #alle pfade aus home app
+    path('chat/', include("chat.urls")) #alle pfade aus chat app
 ]
