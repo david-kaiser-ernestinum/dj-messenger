@@ -1,5 +1,5 @@
-from django.urls import path
-from .views import create_chat, view_chat, send_message, add_user
+from django.urls import path #importiere die projekt urls.py
+from .views import create_chat, view_chat, send_message, add_user #importiere die methoden aus views
 
 urlpatterns = [
     path("create/", create_chat, name="create_chat"), #URL-Pfad um ein Chat zu erstellen
