@@ -14,6 +14,9 @@ def create_chat(request):
         name = request.POST.get("name")
         chat=Chat.objects.create(name=name) 
         chat.members.add(request.user) 
+        eastereggs = ["luracks", "michael", "falk", "jacob", "jonathan", "raphael"]
+        if name in eastereggs:
+            return redirect(f"{reverse("home")}?sound={name}")
 
     return redirect("home") 
 
