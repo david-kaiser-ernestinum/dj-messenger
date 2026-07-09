@@ -47,7 +47,6 @@ In den Projektordner wechseln:
 cd dj_chat
 ```
 
-
 Migrationen ausführen:
 
 ```bash
