@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from settings import DEBUG
 from django.conf.urls.static import static
 
+from django.conf import settings
 
 # Weiterleitung von URLs
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
     path('chat/', include("chat.urls")) #alle pfade aus chat app
 ]
 
-if DEBUG:
+if settings.DEBUG:
     urlpatterns += static(
         settings.STATIC_URL,
         document_root=settings.STATIC_ROOT
