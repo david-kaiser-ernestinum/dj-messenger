@@ -1,5 +1,6 @@
 <!-- Diese Datei geht aus der base.html Datei hervor --> 
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Home · dj_chat{% endblock %}
 
@@ -11,6 +12,8 @@
 <!-- Inhalt der Seite --> 
 {% block content %}
 
+
+<!-- Hier wird der Sound abgespielt, wenn er ein Easteregg-Name ist --> 
 {% if play_sound %}
 <script>
 	new Audio("{% static 'audio/' %}{{ play_sound }}.mp3").play();

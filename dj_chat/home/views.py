@@ -14,7 +14,8 @@ def index_view(request):
 @login_required
 def home_view(request):
     chats = Chat.objects.filter(members=request.user)
-
+    
+    # Logik für die Sounds bei den Eastereggs
     playsound = False
     if request.GET.get("sound"):
         playsound = request.GET.get("sound")
