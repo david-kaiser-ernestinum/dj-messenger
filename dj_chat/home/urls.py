@@ -1,21 +1,22 @@
-from django.urls import path  #importiere die project urls.py
+from django.urls import path  
 
-from .views import index_view #importiere die views
+# importieren der views-Methoden
+from .views import index_view 
 from .views import home_view
 
 # Alle Seiten für die Startseite und die Home-Seite
 urlpatterns = [
-        path("",                #wenn seite ohne pfad aufgerufen wird wird index angezeigt
+        path("",
              index_view,
              name="index",
         ),
         
-        path("index/",          #index pfad
+        path("index/",          
              index_view,
              name="index",
         ),
 
-        path("home/",          #homepage pfad
+        path("home/",          
              home_view,
              name="home",
         ),

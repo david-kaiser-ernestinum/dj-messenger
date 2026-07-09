@@ -17,7 +17,7 @@ db.sqlite3
 # Logs
 *.log
 
-# static's
+# static files
 STATICFILES/
 
 

@@ -1,5 +1,10 @@
-from django.urls import path #importiere die projekt urls.py
-from .views import create_chat, view_chat, send_message, add_user #importiere die methoden aus views
+from django.urls import path 
+
+# importieren der views-Methoden
+from .views import create_chat
+from .views import view_chat
+from .views import send_message 
+from .views import add_user
 
 # Alle URLs für die Chatfunktion
 urlpatterns = [

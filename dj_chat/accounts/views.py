@@ -1,7 +1,7 @@
-from django.shortcuts import render    #django standart biblotheken für weiterleitungen
+from django.shortcuts import render    
 from django.shortcuts import redirect
-from django.contrib.auth.models import User #User datenbank von django
 
+from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate #django auth methoden
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -18,7 +18,7 @@ def register_view(request):
         
         # Keine Benutzernamen kommen mehrfach vor
         if User.objects.filter(
-                username=username #wenn nutzername schon existiert
+                username=username 
             ).exists():
             
             error = "Benutzername exisitiert bereits"
@@ -29,7 +29,9 @@ def register_view(request):
                     username=username,
                     password=password
                     )
-            login(request,user) #login methode vorgegeben von django
+
+            # Sicheres Anmelden durch die Django-Methode
+            login(request,user)
 
             return redirect("/home/")
     
@@ -44,7 +46,7 @@ def login_view(request):
 
     error = "" 
     
-    # wenn gepostet wird werden die Daten aus der Anfrage extrahiert
+    # wenn gepostet wird, werden die Daten aus der Anfrage extrahiert
     if request.method == "POST": 
         username = request.POST["username"] 
         password = request.POST["password"]
