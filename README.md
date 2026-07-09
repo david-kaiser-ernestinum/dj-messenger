@@ -7,7 +7,6 @@ Ein Messenger, entwickelt mit Django.
 - Python 3.12+
 - Git
 - Nginx
-- Gunicorn
 
 ## Installation
 
@@ -54,7 +53,9 @@ In den Projektordner wechseln:
 cd dj_chat
 ```
 
-Einen neuen Schlüssel generieren:
+### Einen neuen Schlüssel generieren:
+
+Um einen sicheren Schlüssel zu erstellen braucht es zuerst einen temporären Schlüssel:
 
 Linux/macOS:
 
@@ -70,6 +71,7 @@ $env:SECRET_KEY="temp-key"
 python manage.py shell
 ```
 
+Nun kann der sichere Schlüssel generiert werden:
 ```python
 from django.core.management.utils import get_random_secret_key
 print(get_random_secret_key())
@@ -177,6 +179,8 @@ server {
     }
 }
 ```
+Ersetze `deine-domain.de` durch deine tatsächliche Domain.
+Ersetze `/pfad/zu/dj-messenger/dj_chat/staticfiles/` durch den tatsächlichen Pfad.
 
 Aktivieren:
 
