@@ -125,11 +125,76 @@ python manage.py runserver
 
 ## Anwendung starten (Deployment)
 
-```bash
-gunicorn messenger.wsgi:application
+### Django Einstellungen
+
+In `settings.py`:
+
+```python
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    "deine-domain.de",
+    "www.deine-domain.de",
+]
 ```
 
-Die Anwendung wird anschließend über Nginx bereitgestellt.
+Ersetze `deine-domain.de` durch deine tatsächliche Domain.
+
+### Gunicorn einrichten
+
+Gunicorn starten:
+
+```bash
+gunicorn dj_chat.wsgi:application --bind 127.0.0.1:8000
+```
+### Nginx konfigurieren
+
+Neue Konfiguration erstellen:
+
+```bash
+sudo nano /etc/nginx/sites-available/dj-messenger
+```
+
+Beispiel:
+
+```nginx
+server {
+    listen 80;
+
+    server_name deine-domain.de www.deine-domain.de;
+
+    location /static/ {
+        alias /pfad/zu/dj-messenger/dj_chat/staticfiles/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+Aktivieren:
+
+```bash
+sudo ln -s /etc/nginx/sites-available/dj-messenger /etc/nginx/sites-enabled/
+```
+
+Konfiguration testen:
+
+```bash
+sudo nginx -t
+```
+
+Nginx neu starten:
+
+```bash
+sudo systemctl restart nginx
+```
 
 ## Verwendete Technologien
 
