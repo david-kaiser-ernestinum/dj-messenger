@@ -78,10 +78,18 @@ Linux/macOS:
 export SECRET_KEY="dein-generierter-key"
 ```
 
-Windows Command Line:
+Windows:
+
+In Powershell oder CommandLine den Befehl eingeben.
 
 ```powershell
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+Den ausgespuckten Schlüssel gegen key ersetzen. 
+
+```powershell
+set SECRET_KEY="key"
 ```
 
 ## Datenbank vorbereiten
