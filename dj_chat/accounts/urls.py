@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path 
 
-from .views import register_view
+# importieren der views-Methoden
+from .views import register_view 
 from .views import login_view
 from .views import logout_view
 
@@ -19,7 +20,7 @@ urlpatterns = [
         ),
         
         # zum Abmelden
-        path("logout/",
+        path("logout/",          
              logout_view,
              name="logout",
         ),]

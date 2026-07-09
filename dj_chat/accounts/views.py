@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render    #django standart biblotheken für weiterleitungen
 from django.shortcuts import redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User #User datenbank von django
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate #django auth methoden
 from django.contrib.auth import login
 from django.contrib.auth import logout
 
@@ -18,7 +18,7 @@ def register_view(request):
         
         # Keine Benutzernamen kommen mehrfach vor
         if User.objects.filter(
-                username=username
+                username=username #wenn nutzername schon existiert
             ).exists():
             
             error = "Benutzername exisitiert bereits"
@@ -29,7 +29,7 @@ def register_view(request):
                     username=username,
                     password=password
                     )
-            login(request,user)
+            login(request,user) #login methode vorgegeben von django
 
             return redirect("/home/")
     
@@ -42,17 +42,19 @@ def register_view(request):
 # Funktion für das Anmelden
 def login_view(request):
 
-    error = ""
-
-    if request.method == "POST":
-        username = request.POST["username"]
+    error = "" 
+    
+    # wenn gepostet wird werden die Daten aus der Anfrage extrahiert
+    if request.method == "POST": 
+        username = request.POST["username"] 
         password = request.POST["password"]
 
 
-        user = authenticate(request,
+        user = authenticate(request, 
                             username=username,
                             password=password
                             )
+
         # Wenn der Nutzer existiert und die Daten stimmen wird er auf die Home-Seite weitergeleitet
         if user:
             login(
@@ -77,7 +79,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
 
-    return redirect("/index/")
+    return redirect("/index/") 
 
 
 

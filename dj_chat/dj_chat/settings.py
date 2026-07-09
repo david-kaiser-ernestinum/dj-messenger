@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+#Projekteinstellungen, meist django generiert
+
 from pathlib import Path
 
 # Pfade für die einzelnen Ordner
@@ -33,7 +35,7 @@ ALLOWED_HOSTS = ["testtest.sytes.net","*"]#,
 
 # Unsere Apps + Django-Apps für die Accounts
 INSTALLED_APPS = [
-    'chat',
+    'chat',  #Unsere apps mit den django standart apps
     'home',
     'accounts',
     'django.contrib.admin',
@@ -74,7 +76,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'dj_chat.wsgi.application'
 
 
-# Datenbanken
+# Datenbbanken (bei uns sqlite3)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
