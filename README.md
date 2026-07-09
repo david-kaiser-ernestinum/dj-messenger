@@ -14,8 +14,8 @@ Ein Messenger, entwickelt mit Django.
 Repository klonen:
 
 ```bash
-git clone https://github.com/<dein-name>/django-messenger.git
-cd django-messenger
+git clone https://github.com/david-kaiser-ernestinum/dj-messenger.git
+cd dj-messenger
 ```
 
 Virtuelle Umgebung erstellen:
