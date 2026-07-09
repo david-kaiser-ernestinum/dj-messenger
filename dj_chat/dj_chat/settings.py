@@ -25,12 +25,12 @@ LOGOUT_REDIRECT_URL = "login"
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cvgfuj3@c)1*xgf47nx1+$5h(#t4=$&3_*&z^r43#91n&c*lgy'
+import os
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ["testtest.sytes.net","*"]#,
-                 #'p549daa0f.dip0.t-ipconnect.de']
+DEBUG = True
+ALLOWED_HOSTS = ["*"]
 
 
 # Unsere Apps + Django-Apps für die Accounts
