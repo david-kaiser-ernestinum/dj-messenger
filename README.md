@@ -64,13 +64,6 @@ export SECRET_KEY="temp-key"
 python manage.py shell
 ```
 
-Windows:
-
-```powershell
-$env:SECRET_KEY="temp-key"
-python manage.py shell
-```
-
 Nun kann der sichere Schlüssel generiert werden:
 ```python
 from django.core.management.utils import get_random_secret_key
@@ -83,6 +76,10 @@ Linux/macOS:
 
 ```bash
 export SECRET_KEY="dein-generierter-key"
+```
+
+```Windows Command Line:
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
 
 Windows PowerShell:
