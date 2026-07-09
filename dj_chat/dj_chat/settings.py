@@ -110,5 +110,8 @@ USE_TZ = True
 
 
 # Statische Dateien (Bei uns von nginx verwaltet)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 STATIC_ROOT = BASE_DIR / "staticfiles"
