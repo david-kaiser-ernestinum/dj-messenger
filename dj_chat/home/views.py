@@ -14,9 +14,15 @@ def index_view(request):
 @login_required
 def home_view(request):
     chats = Chat.objects.filter(members=request.user)
+
+    playsound = False
+    if request.GET.get("sound"):
+        playsound = request.GET.get("sound")
+
     
     context = {
-        "chats": chats
+        "chats": chats,
+        "play_sound": playsound
             }
 
     return render(request, "home.html", context)
