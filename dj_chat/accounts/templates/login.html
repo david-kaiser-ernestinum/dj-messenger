@@ -1,17 +1,21 @@
+<!-- Diese Datei geht aus der base.html Datei hervor --> 
 {% extends "base.html" %}
 
 {% block title %}Login · dj_chat{% endblock %}
 
+<!-- Inhalt der Anmeldeseite --> 
 {% block content %}
 <section class="auth">
 	<div class="card">
 		<h1>Willkommen zurück</h1>
 		<p class="subtitle">Melde dich an, um deine Chats zu sehen.</p>
 
+		<!-- Anzeigen möglicher Fehler --> 
 		{% if error %}
 		<p class="error-banner">{{ error }}</p>
 		{% endif %}
 
+		<!-- POST-Request zum Anmelden --> 
 		<form method="post" class="form">
 			{% csrf_token %}
 			<label class="field">

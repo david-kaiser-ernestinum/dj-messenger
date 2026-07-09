@@ -1,17 +1,23 @@
+<!-- Diese Datei geht aus der base.html Datei hervor --> 
 {% extends "base.html" %}
 
 {% block title %}Home · dj_chat{% endblock %}
 
+<!-- Knopf zum Abmelden in der oberen Menüleiste --> 
 {% block topbar_right %}
 <a href="/logout/" class="link-muted">Logout</a>
 {% endblock %}
 
+<!-- Inhalt der Seite --> 
 {% block content %}
+
+<!-- Gruß an den Nutzer--> 
 <section class="page-header">
 	<h1>Willkommen, {{ request.user.username }}</h1>
 	<p class="subtitle">Deine Unterhaltungen im Überblick.</p>
 </section>
 
+<!-- Hier gibt es eine Liste mit den Chats, wenn Chats vorhanden sind --> 
 <section class="chat-list">
 	{% for chat in chats %}
 	<a href="{% url 'view_chat' chat.id %}" class="chat-row">
@@ -27,6 +33,8 @@
 	{% endfor %}
 </section>
 
+
+<!-- POST-Request zum Erstellen von neuen Chats --> 
 <section class="card card-compact">
 	<h2>Neuen Chat erstellen</h2>
 	<form action="/chat/create/" method="post" class="form form-inline">

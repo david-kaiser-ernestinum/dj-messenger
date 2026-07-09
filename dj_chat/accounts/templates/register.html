@@ -1,17 +1,21 @@
+<!-- Diese Datei geht aus der base.html Datei hervor --> 
 {% extends "base.html" %}
 
 {% block title %}Registrieren · dj_chat{% endblock %}
 
+<!-- Inhalt der Registrierungsseite --> 
 {% block content %}
 <section class="auth">
 	<div class="card">
 		<h1>Konto erstellen</h1>
 		<p class="subtitle">Leg dir einen Account an und leg direkt los.</p>
 
+		<!-- Anzeigen möglicher Fehler --> 
 		{% if error %}
 		<p class="error-banner">{{ error }}</p>
 		{% endif %}
 
+		<!-- POST-Request zum Erstellen von einem Account --> 
 		<form method="post" class="form">
 			{% csrf_token %}
 			<label class="field">
