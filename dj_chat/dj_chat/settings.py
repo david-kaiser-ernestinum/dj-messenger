@@ -111,4 +111,4 @@ USE_TZ = True
 
 # Statische Dateien (Bei uns von nginx verwaltet)
 STATIC_URL = 'static/'
-STATIC_ROOT = "/home/david/informatik_projekt/dj_chat/static"
+STATIC_ROOT = BASE_DIR / "staticfiles"

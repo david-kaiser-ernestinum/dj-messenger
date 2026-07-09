@@ -42,6 +42,12 @@ Abhängigkeiten installieren:
 pip install -r requirements.txt
 ```
 
+In den Projektordner wechseln:
+```bash
+cd dj_chat
+```
+
+
 Migrationen ausführen:
 
 ```bash
