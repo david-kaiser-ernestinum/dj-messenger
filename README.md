@@ -57,7 +57,7 @@ cd dj_chat
 
 Um einen sicheren Schlüssel zu erstellen braucht es zuerst einen temporären Schlüssel:
 
-Linux/macOS:
+### Linux/macOS:
 
 ```bash
 export SECRET_KEY="temp-key"
@@ -72,24 +72,21 @@ print(get_random_secret_key())
 
 Den ausgegebenen Wert als `SECRET_KEY` setzen.
 
-Linux/macOS:
-
 ```bash
 export SECRET_KEY="dein-generierter-key"
 ```
 
-Windows:
+### Windows:
 
 In Powershell oder CommandLine den Befehl eingeben.
 
 ```powershell
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
-
-Den ausgespuckten Schlüssel gegen key ersetzen. 
+Den ausgegebenen Wert als `SECRET_KEY` setzen.
 
 ```powershell
-set SECRET_KEY="key"
+set SECRET_KEY="dein-generierter-key"
 ```
 
 ## Datenbank vorbereiten
