@@ -42,19 +42,33 @@ Abhängigkeiten installieren:
 pip install -r requirements.txt
 ```
 
+
 ## Umgebungsvariablen einrichten
 
 Das Projekt benötigt einen Django `SECRET_KEY`.
 
 Erstelle eine Umgebungsvariable mit einem eigenen Schlüssel.
 
+In den Projektordner wechseln:
+```bash
+cd dj_chat
+```
+
 Einen neuen Schlüssel generieren:
 
+Linux/macOS:
+
 ```bash
+export SECRET_KEY="temp-key"
 python manage.py shell
 ```
 
-Dann:
+Windows:
+
+```powershell
+$env:SECRET_KEY="temp-key"
+python manage.py shell
+```
 
 ```python
 from django.core.management.utils import get_random_secret_key
@@ -79,10 +93,6 @@ $env:SECRET_KEY="dein-generierter-key"
 
 ## Datenbank vorbereiten
 
-In den Projektordner wechseln:
-```bash
-cd dj_chat
-```
 
 Migrationen ausführen:
 
