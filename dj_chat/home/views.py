@@ -6,11 +6,11 @@ from django.contrib.auth import authenticate
 
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
+# Weiterleitung zur Startseite
 def index_view(request):
     return render(request,"index.html")
 
+# Auf der Home-Seite werden alle Chats angezeigt
 @login_required
 def home_view(request):
     chats = Chat.objects.filter(members=request.user)

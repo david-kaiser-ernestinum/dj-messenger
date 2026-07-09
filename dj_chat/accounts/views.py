@@ -6,23 +6,25 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 
+# Funktion für die Registrierung
 def register_view(request):
 
     error = ""
-
+    
     if request.method == "POST":
 
         username = request.POST["username"]
         password = request.POST["password"]
-
+        
+        # Keine Benutzernamen kommen mehrfach vor
         if User.objects.filter(
                 username=username
             ).exists():
             
             error = "Benutzername exisitiert bereits"
-
-        else: 
-
+    
+        # Bei erfolgreicher erstellung eines Accounts wird auf die Home-Seite weitergeleitet
+        else:
             user = User.objects.create_user(
                     username=username,
                     password=password
@@ -30,12 +32,14 @@ def register_view(request):
             login(request,user)
 
             return redirect("/home/")
-
+    
+    # Bei einer fehlgeschlagenen Registrierung oder beim aufrufen der Seite
     return render(
             request,
             "register.html",
             {"error": error})
 
+# Funktion für das Anmelden
 def login_view(request):
 
     error = ""
@@ -49,6 +53,7 @@ def login_view(request):
                             username=username,
                             password=password
                             )
+        # Wenn der Nutzer existiert und die Daten stimmen wird er auf die Home-Seite weitergeleitet
         if user:
             login(
                     request,
@@ -58,10 +63,9 @@ def login_view(request):
             return redirect("/home/")
 
 
-
         error = "Falscher Login"
 
-
+    # Bei einer fehlgeschlagenen Anmeldung oder beim aufrufen der Seite
     return render(
             request,
             "login.html",
@@ -69,6 +73,7 @@ def login_view(request):
                 "error":error
             })
 
+# Beim Abmelden wird auf die Startseite verwiesen
 def logout_view(request):
     logout(request)
 

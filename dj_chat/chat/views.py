@@ -5,8 +5,9 @@ from datetime import datetime
 from django.http import HttpResponseForbidden
 from django.contrib.auth.models import User
 
-# Create your views here.
+# Alle Funktonen hier sind nur für angemeldete Benutzer verfügbar
 
+# Erstellen eines Chats
 @login_required
 def create_chat(request):
     if request.method == "POST":
@@ -15,6 +16,7 @@ def create_chat(request):
         chat.members.add(request.user) 
     return redirect("home")
 
+# Weiterleiten auf die Chatseite, wenn der Nutzer im Chat ist
 @login_required
 def view_chat(request, chat_id):
     chat = get_object_or_404(Chat,id=chat_id)
@@ -29,15 +31,13 @@ def view_chat(request, chat_id):
             }
     return render(request,"chat.html", context)
 
-
+# Funktion zum Senden einer Nachricht in einem Chat
 @login_required
 def send_message(request, chat_id):
     chat = get_object_or_404(Chat,id=chat_id)
 
     if not chat.members.filter(id=request.user.id).exists():
         return HttpResponseForbidden()
-
-
 
     if request.method == "POST":
         user = request.user
@@ -51,6 +51,7 @@ def send_message(request, chat_id):
 
     return redirect("view_chat", chat_id)
 
+# Funktion für das Hinzufügen von Nutzern zu einem Chat
 @login_required
 def add_user(request, chat_id):
     chat = get_object_or_404(Chat,id=chat_id)

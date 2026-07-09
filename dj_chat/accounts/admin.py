@@ -1,3 +1,3 @@
 from django.contrib import admin
 
-# Register your models here.
+# Die Benutzer sind als Datenbankobjekt bereits verfügbar

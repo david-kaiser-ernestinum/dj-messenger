@@ -16,3 +16,8 @@ db.sqlite3
 
 # Logs
 *.log
+
+# static's
+STATICFILES/
+
+

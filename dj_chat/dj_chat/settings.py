@@ -12,29 +12,26 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Pfade für die einzelnen Ordner
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Login Sachen
+# Login URLs für die Weiterleitung
+ROOT_URLCONF = 'dj_chat.urls'
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-cvgfuj3@c)1*xgf47nx1+$5h(#t4=$&3_*&z^r43#91n&c*lgy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+ALLOWED_HOSTS = ["testtest.sytes.net","*"]#,
+                 #'p549daa0f.dip0.t-ipconnect.de']
 
-ALLOWED_HOSTS = ["*"]
 
-
-# Application definition
-
+# Unsere Apps + Django-Apps für die Accounts
 INSTALLED_APPS = [
     'chat',
     'home',
@@ -47,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Sicherheitsschicht
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,8 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'dj_chat.urls'
-
+# Dateipfade zu den einzelnen Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -77,9 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'dj_chat.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+# Datenbanken
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -88,9 +83,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
-
+# Sicherheitsmaßnahmen für die Passwörter
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -107,20 +100,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/6.0/topics/i18n/
-
+# Lokale Einstellungen
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
-
+# Statische Dateien (Bei uns von nginx verwaltet)
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = "/home/david/informatik_projekt/dj_chat/static"

@@ -3,6 +3,7 @@ from django.urls import path
 from .views import index_view
 from .views import home_view
 
+# Alle Seiten für die Startseite und die Home-Seite
 urlpatterns = [
         path("",
              index_view,

@@ -1,3 +1,3 @@
 from django.db import models
 
-# Create your models here.
+# Die Benutzer sind als Datenbankobjekt bereits verfügbar
