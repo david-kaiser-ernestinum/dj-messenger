@@ -11,6 +11,12 @@
 <!-- Inhalt der Seite --> 
 {% block content %}
 
+{% if play_sound %}
+<script>
+	new Audio("{% static 'audio/' %}{{ play_sound }}.mp3").play();
+</script>
+{% endif %}
+
 <!-- Gruß an den Nutzer--> 
 <section class="page-header">
 	<h1>Willkommen, {{ request.user.username }}</h1>
